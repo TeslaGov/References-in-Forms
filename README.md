@@ -11,9 +11,11 @@ You must also have source reference columns that follow this name format: 'Refer
 For example: 
 
 Source_1
+
 'pixtoday.net/article/file/'
 
 Reference_1
+
 '10 October 2023. PiX. Title'
 
 If there's any questions/issues feel free to contact Uziel Rios or Caitriona Cobb
