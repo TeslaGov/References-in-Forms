@@ -1,4 +1,4 @@
-# To build the description with references you need at least 1 'Source_i' column with it's associated 'Source_URL_i' column
+# To build the description with references you need at least 1 'Source_i' column with it's associated 'Source_i_URL' column
 
 # The description column must also be titled 'Description'
 
@@ -9,15 +9,15 @@ df = pd.read_csv('imported_data.csv')
 
 def build_desc(row):
   i = 1
-  if not pd.isna(row[f'Source_URL_{i}']):
-    row['Description'] = f'<p>{row["Description"]}<sup class="pix-reference pix-reference__nav" prefix-config-display-text="{row["Source_" + str(i)]}" prefix-config-link="{row["Source_URL_" + str(i)]}"><a id="ref{i}_home" href="#">[{i}]</a></sup>'
+  if not pd.isna(row[f'Source_{i}_URL']):
+    row['Description'] = f'<p>{row["Description"]}<sup class="pix-reference pix-reference__nav" prefix-config-display-text="{row["Source_" + str(i)]}" prefix-config-link="{row["Source_" + str(i) + "_URL"]}"><a id="ref{i}_home" href="#">[{i}]</a></sup>'
 
     i += 1
-    while not pd.isna(row[f'Source_URL_{i}']):
-      row['Description'] = f'{row["Description"]}<sup class="pix-reference pix-reference__nav" prefix-config-display-text="{row["Source_" + str(i)]}" prefix-config-link="{row["Source_URL_" + str(i)]}"><a id="ref{i}_home" href="#">[{i}]</a></sup>'
+    while not pd.isna(row[f'Source_{i}_URL']):
+      row['Description'] = f'{row["Description"]}<sup class="pix-reference pix-reference__nav" prefix-config-display-text="{row["Source_" + str(i)]}" prefix-config-link="{row["Source_" + str(i) + "_URL"]}"><a id="ref{i}_home" href="#">[{i}]</a></sup>'
 
       i += 1
-      if f'Source_URL_{i}' not in df.columns:
+      if f'Source_{i}_URL' not in df.columns:
         break
 
     row['Description'] = f'{row["Description"]}</p>'
